@@ -3,14 +3,12 @@ package com.group.libraryapp.controller.user;
 import com.group.libraryapp.domain.user.Fruit;
 import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.domain.user.User;
+import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,5 +44,17 @@ public class UserController {
              int age = rs.getInt("age");
              return new UserResponse(id, name, age);
          });
+    }
+
+    @PutMapping
+    public void updateUser(@RequestBody UserUpdateRequest request) {
+        String sql = "update user set name = ? where id = ?";
+        jdbcTemplate.update(sql, request.getName(), request.getId());
+    }
+
+    @DeleteMapping("/user")
+    public void deleteUser(@RequestParam String name) {
+        String sql = "delete from user where name = ?";
+        jdbcTemplate.update(sql, name);
     }
 }
