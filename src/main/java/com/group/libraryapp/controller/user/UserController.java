@@ -45,8 +45,7 @@ public class UserController {
              return new UserResponse(id, name, age);
          });
     }
-
-    @PutMapping
+    @PutMapping("/user")
     public void updateUser(@RequestBody UserUpdateRequest request) {
         String sql = "update user set name = ? where id = ?";
         jdbcTemplate.update(sql, request.getName(), request.getId());
