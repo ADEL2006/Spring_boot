@@ -20,13 +20,12 @@ public class UserRepository {
         jdbcTemplate.update(sql, name, id);
     }
 
-    public void deleteUser(String name) {
+    public boolean isUserNotExist(String name){
         String readSql = "select * from user where name = ?";
-        boolean isUserNotExist =  jdbcTemplate.query(readSql, (rs, rowNum) -> 0, name).isEmpty();
-        if (isUserNotExist){
-            throw  new IllegalArgumentException();
-        }
+        return jdbcTemplate.query(readSql, (rs, rowNum) -> 0, name).isEmpty();
+    }
 
+    public void deleteUser(String name) {
         String sql = "delete from user where name = ?";
         jdbcTemplate.update(sql, name);
     }
