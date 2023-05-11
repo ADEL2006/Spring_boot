@@ -19,4 +19,15 @@ public class UserRepository {
         String sql = "update user set name = ? where id = ?";
         jdbcTemplate.update(sql, name, id);
     }
+
+    public void deleteUser(String name) {
+        String readSql = "select * from user where name = ?";
+        boolean isUserNotExist =  jdbcTemplate.query(readSql, (rs, rowNum) -> 0, name).isEmpty();
+        if (isUserNotExist){
+            throw  new IllegalArgumentException();
+        }
+
+        String sql = "delete from user where name = ?";
+        jdbcTemplate.update(sql, name);
+    }
 }
