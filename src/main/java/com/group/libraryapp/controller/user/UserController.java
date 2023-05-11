@@ -50,7 +50,7 @@ public class UserController {
     }
     @PutMapping("/user")
     public void updateUser(@RequestBody UserUpdateRequest request) {
-        userService.updateUser(jdbcTemplate, request);
+        userService.updateUser(request);
     }
 
     @DeleteMapping("/user")
