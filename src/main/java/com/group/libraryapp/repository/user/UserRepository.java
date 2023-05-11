@@ -29,4 +29,9 @@ public class UserRepository {
         String sql = "delete from user where name = ?";
         jdbcTemplate.update(sql, name);
     }
+
+    public void saveUser(String name, Integer age) {
+        String sql = "insert into user (name, age) values (?, ?)";
+        jdbcTemplate.update(sql, name, age);
+    }
 }
