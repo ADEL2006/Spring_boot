@@ -5,6 +5,7 @@ import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.domain.user.User;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
+import com.group.libraryapp.service.user.UserService;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,6 +19,7 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    private final UserService userService = new UserService();
     private final JdbcTemplate jdbcTemplate;
 
     public UserController(JdbcTemplate jdbcTemplate){
@@ -47,14 +49,7 @@ public class UserController {
     }
     @PutMapping("/user")
     public void updateUser(@RequestBody UserUpdateRequest request) {
-        String readSql = "select * from user where id = ?";
-        boolean isUserNotExist =  jdbcTemplate.query(readSql, (rs, rowNum) -> 0, request.getId()).isEmpty();
-        if (isUserNotExist){
-            throw  new IllegalArgumentException();
-        }
-
-        String sql = "update user set name = ? where id = ?";
-        jdbcTemplate.update(sql, request.getName(), request.getId());
+        userService.updateUser(jdbcTemplate, request);
     }
 
     @DeleteMapping("/user")
