@@ -13,6 +13,6 @@ public class UserService {
             throw  new IllegalArgumentException();
         }
 
-        updateUser(jdbcTemplate, request.getName(), request.getId());
+        userRepository.updateUserName(jdbcTemplate, request.getName(), request.getId());
     }
 }

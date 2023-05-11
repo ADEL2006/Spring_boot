@@ -9,7 +9,7 @@ public class UserRepository {
         return  jdbcTemplate.query(readSql, (rs, rowNum) -> 0, id).isEmpty();
     }
 
-    public void updateUserName(JdbcTemplate jdbcTemplate, String name, String id) {
+    public void updateUserName(JdbcTemplate jdbcTemplate, String name, long id) {
         String sql = "update user set name = ? where id = ?";
         jdbcTemplate.update(sql, name, id);
     }
