@@ -6,12 +6,22 @@ import com.group.libraryapp.dto.user.response.UserResponse;
 import com.group.libraryapp.repository.user.UserRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 public class UserService {
 
     private final UserRepository userRepository;
 
     public UserService(JdbcTemplate jdbcTemplate) {
         userRepository = new UserRepository(jdbcTemplate);
+    }
+
+    public void saveUser(UserCreateRequest request) {
+        userRepository.saveUser(request.getName(), request.getAge());
+    }
+
+    public List<UserResponse> getUsers() {
+        return userRepository.getUsers();
     }
 
     public void updateUser(UserUpdateRequest request) {
@@ -29,13 +39,5 @@ public class UserService {
         }
 
         userRepository.deleteUser(name);
-    }
-
-    public void saveUser(UserCreateRequest request) {
-        userRepository.saveUser(request.getName(), request.getAge());
-    }
-
-    public list<UserResponse> getUsers() {
-        userRepository.getUsers();
     }
 }

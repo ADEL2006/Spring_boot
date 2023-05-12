@@ -1,6 +1,9 @@
 package com.group.libraryapp.repository.user;
 
+import com.group.libraryapp.dto.user.response.UserResponse;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 
 public class UserRepository {
 
@@ -33,5 +36,15 @@ public class UserRepository {
     public void saveUser(String name, Integer age) {
         String sql = "insert into user (name, age) values (?, ?)";
         jdbcTemplate.update(sql, name, age);
+    }
+
+    public List<UserResponse> getUsers() {
+        String sql = "select * from user";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            long id = rs.getLong("id");
+            String name = rs.getString("name");
+            int age = rs.getInt("age");
+            return new UserResponse(id, name, age);
+        });
     }
 }
