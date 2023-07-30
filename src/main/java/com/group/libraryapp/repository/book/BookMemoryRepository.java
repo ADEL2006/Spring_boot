@@ -1,6 +1,6 @@
 package com.group.libraryapp.repository.book;
 
-public class BookMemoryRepository {
+public class BookMemoryRepository implements BookRepository {
 
     //private final List<Book> books = new ArrayList<Book>();
 
