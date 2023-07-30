@@ -9,9 +9,9 @@ public class BookController {
 
     private final BookService bookService = new BookService();
 
-    @PostMapping
+    @PostMapping("/book")
     public void saveBook() {
-
+        bookService.saveBook();
     }
 
 }
