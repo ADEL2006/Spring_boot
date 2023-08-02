@@ -4,6 +4,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service
-@Primary
+@Primary // Qualifier보다 우선순위 낮음
 public class OrangeService implements FruitService{
 }
