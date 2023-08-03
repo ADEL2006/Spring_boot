@@ -4,6 +4,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-@Qualifier("main") // 직접 특별히 지정하는것은 우선순위가 높다.
+@Qualifier("main") // 직접 특별히 지정하는것은 우선순위가 높다. (Primary 보다 우선순위 위)
 public class BananaService implements FruitService{
 }
