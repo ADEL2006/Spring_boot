@@ -12,6 +12,8 @@ import java.util.List;
 @Service
 public class UserService {
 
+    // 유저 서비스
+
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
