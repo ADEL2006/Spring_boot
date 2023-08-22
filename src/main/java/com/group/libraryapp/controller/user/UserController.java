@@ -19,7 +19,6 @@ public class UserController {
 //   @Autowired
     private final UserService userService;
 // 필드에 바로 사용: 테스트를 어렵게 만드는 요인
-    private final FruitService fruitService;
 
 //    @Autowired
 //    public void setUserService(UserService userService) {
@@ -27,9 +26,8 @@ public class UserController {
 //    }
 // setter: 사용하면 오작동이할 수 있음
 
-    public UserController(UserService userService, @Qualifier("main")FruitService fruitService){
+    public UserController(UserService userService){
         this.userService = userService;
-        this.fruitService = fruitService;
     }
 // 제일 나은거: 생성자 사용
 
