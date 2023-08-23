@@ -1,9 +1,6 @@
 package com.group.libraryapp.domain.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -12,6 +9,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
     private Long id = null;
 
+    @Column(nullable = false, length = 20)
     private String name;
     private Integer age;
 
